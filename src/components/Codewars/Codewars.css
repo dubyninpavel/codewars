@@ -1,19 +1,23 @@
-.App {
+.codewars {
   text-align: center;
 }
 
-.App-logo {
+.codewars__title {
+  margin: 0 0 0 0;
+}
+
+.codewars__logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .codewars__logo {
+    animation: codewars__logo_spin infinite 20s linear;
   }
 }
 
-.App-header {
+.codewars__header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,11 +28,16 @@
   color: white;
 }
 
-.App-link {
+.codewars__link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+.codewars__button {
+  background-color: rgb(36, 177, 177);
+  margin: 20px 0 0 0;
+}
+
+@keyframes codewars__logo_spin {
   from {
     transform: rotate(0deg);
   }
