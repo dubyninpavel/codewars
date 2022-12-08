@@ -1,3 +1,7 @@
+/* eslint-disable quote-props */
+/* eslint-disable no-unreachable-loop */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-bitwise */
 /* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-continue */
@@ -265,4 +269,136 @@ const example = (num) => {
   return a;
 };
 
-export default zeros1;
+// Задача про числа Фибоначчи
+
+// eslint-disable-next-line consistent-return
+const productFib = (prod) => {
+  const arr = [0, 1];
+
+  for (let i = 2; i <= prod; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
+    if ((arr[i - 1] * arr[i - 2]) === prod) {
+      return [arr[i - 2], arr[i - 1], true];
+    }
+    if ((arr[i - 1] * arr[i - 2]) > prod) {
+      return [arr[i - 2], arr[i - 1], false];
+    }
+  }
+};
+
+// Альтернатива
+const productFib1 = (prod) => {
+  let [a, b] = [0, 1];
+  while (a * b < prod) [a, b] = [b, a + b];
+  return [a, b, a * b === prod];
+};
+
+// Задача про время
+
+const humanReadable = (seconds) => {
+  const hour = Math.floor(Math.floor(seconds / 60) / 60);
+  const minute = Math.floor(Math.floor(seconds / 60) % 60);
+  const second = seconds % 60;
+
+  function checkTime(time) {
+    if (time < 10) {
+      return `0${time}`;
+    }
+    return time;
+  }
+
+  return `${checkTime(hour)}:${checkTime(minute)}:${checkTime(second)}`;
+};
+
+// Задача про повторение символов в строке
+
+const firstNonRepeatingLetter = (str) => {
+  const obj = {};
+  let string = '';
+
+  for (let i = 0; i < str.length; i++) {
+    const currentWord = str[i].toLowerCase();
+    if (!obj[currentWord]) {
+      obj[currentWord] = str[i];
+      continue;
+    }
+    obj[currentWord] += currentWord;
+  }
+
+  for (const key in obj) {
+    if (obj[key].length === 1) {
+      string = obj[key];
+      break;
+    }
+  }
+
+  return string;
+};
+
+// Альтернатива
+const firstNonRepeatingLetter1 = (str) => {
+  for (const i in str) {
+    if (str.match(new RegExp(str[i], 'gi')).length === 1) {
+      return str[i];
+    }
+  }
+  return '';
+};
+
+// Задача про веревод из 32 бит в IP
+
+const int32ToIp = (int32) => {
+  let int2 = (int32 >>> 0).toString(2);
+
+  while (int2.length !== 32) {
+    int2 = `0${int2}`;
+  }
+
+  const arr = [
+    int2.slice(0, 8),
+    int2.slice(8, 16),
+    int2.slice(16, 24),
+    int2.slice(24, 32),
+  ];
+
+  const ip = arr.map((num) => {
+    let sum = 0;
+    for (let i = 0; i < num.length; i++) {
+      sum += num[i] * (2 ** ((num.length - 1) - i));
+    }
+    return sum;
+  });
+
+  return `${ip[0]}.${ip[1]}.${ip[2]}.${ip[3]}`;
+};
+
+// Альтернатива
+
+const int32ToIp1 = (int32) => `${((int32 >> 24) & 0xFF)}.${((int32 >> 16) & 0xFF)}.${((int32 >> 8) & 0xFF)}.${((int32) & 0xFF)}`;
+
+// Задача про стороны света
+
+// const arr = ['NORTH', 'SOUTH', 'SOUTH', 'EAST', 'WEST', 'NORTH', 'WEST'];
+
+const dirReduc = (arr) => {
+  const rules = {
+    'NORTH': 'SOUTH',
+    'WEST': 'EAST',
+    'SOUTH': 'NORTH',
+    'EAST': 'WEST',
+  };
+  const finalDirection = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const currentDirection = arr[i];
+    if (finalDirection.at(-1) === rules[currentDirection]) {
+      finalDirection.pop();
+    } else {
+      finalDirection.push(currentDirection);
+    }
+  }
+
+  return finalDirection;
+};
+
+export default dirReduc;

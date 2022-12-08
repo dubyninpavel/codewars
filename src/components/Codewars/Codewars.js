@@ -1,14 +1,15 @@
+/* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
-import zeros1 from '../../utils/CodeWars/codeWars';
 
 import logo from '../../images/logo.svg';
+import dirReduc from '../../utils/CodeWars/codeWars';
 
 function Codewars() {
   function handleClick() {
-    const arr = [1, 2, 2, 3, 3, 3, 4, 3, 3, 3, 2, 2, 1];
-    const str = 'Pig latin is cool !';
-    const number = 25;
-    console.log(zeros1(number));
+    const arr = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"];
+    const str = 'sTreSS';
+    const number = 2149583361;
+    console.log(dirReduc(arr));
   }
 
   return (
